@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EchoLog | Identity_Check</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&family=Fira+Code:wght@400;500&display=swap" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <style>
+        :root {
+            --bg-dark: #020617;
+            --card-bg: rgba(30, 41, 59, 0.4);
+            --accent-neon: #38bdf8;
+            --text-main: #f1f5f9;
+        }
+
+        body { 
+            background-color: var(--bg-dark);
+            background-image: radial-gradient(circle at 50% 50%, #1e293b 0%, #020617 100%);
+            color: var(--text-main);
+            font-family: 'Inter', sans-serif;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .auth-card {
+            background: var(--card-bg);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 24px;
+            padding: 3.5rem;
+            width: 100%;
+            max-width: 400px;
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.7);
+            animation: authEntrance 0.6s ease-out;
+        }
+
+        @keyframes authEntrance {
+            from { opacity: 0; transform: scale(0.9); }
+            to { opacity: 1; transform: scale(1); }
+        }
+
+        .terminal-header {
+            font-family: 'Fira Code', monospace;
+            font-size: 0.7rem;
+            color: var(--accent-neon);
+            text-align: center;
+            margin-bottom: 2rem;
+            opacity: 0.8;
+        }
+
+        h2 { font-weight: 800; letter-spacing: -1px; text-align: center; margin-bottom: 2rem; }
+
+        input {
+            width: 100%;
+            background: rgba(0, 0, 0, 0.3) !important;
+            border: 1px solid rgba(255, 255, 255, 0.1) !important;
+            border-radius: 10px !important;
+            padding: 12px !important;
+            color: white !important;
+            margin-bottom: 1rem;
+        }
+
+        .btn-neon {
+            background: var(--accent-neon);
+            color: #020617;
+            font-weight: 700;
+            border: none;
+            width: 100%;
+            padding: 12px;
+            border-radius: 10px;
+            box-shadow: 0 0 20px rgba(56, 189, 248, 0.2);
+            transition: 0.3s;
+        }
+
+        .btn-neon:hover { transform: translateY(-2px); background: #7dd3fc; }
+
+        .footer-link {
+            display: block;
+            text-align: center;
+            margin-top: 1.5rem;
+            color: #64748b;
+            text-decoration: none;
+            font-size: 0.8rem;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="auth-card">
+        <div class="terminal-header">> SYSTEM_ACCESS_PROTOCOL</div>
+        <h2>Verify_Identity</h2>
+
+        <form method="POST">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button type="submit" class="btn btn-neon mt-3">AUTHORIZE_SESSION</button>
+        </form>
+
+        <a href="{% url 'register' %}" class="footer-link">_request_new_access (Register)</a>
+    </div>
+
+</body>
+</html>

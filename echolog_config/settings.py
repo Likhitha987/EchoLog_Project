@@ -55,7 +55,7 @@ ROOT_URLCONF = 'echolog_config.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [BASE_DIR / 'scraps' / 'templates'],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -116,3 +116,12 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/6.0/howto/static-files/
 
 STATIC_URL = 'static/'
+
+# Where to go AFTER logging in
+LOGIN_REDIRECT_URL = '/' 
+
+# Where to go AFTER logging out
+LOGOUT_REDIRECT_URL = 'register' 
+
+# The URL name for the login/register page
+LOGIN_URL = 'login'

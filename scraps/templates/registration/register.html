@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EchoLog | Initialize_User</title>
+    
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&family=Fira+Code:wght@400;500&display=swap" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <style>
+        :root {
+            --bg-dark: #020617;
+            --card-bg: rgba(30, 41, 59, 0.4);
+            --accent-neon: #38bdf8;
+            --text-main: #f1f5f9;
+        }
+
+        body { 
+            background-color: var(--bg-dark);
+            background-image: 
+                radial-gradient(circle at 0% 0%, rgba(56, 189, 248, 0.08) 0%, transparent 35%),
+                radial-gradient(circle at 100% 100%, rgba(56, 189, 248, 0.08) 0%, transparent 35%);
+            color: var(--text-main);
+            font-family: 'Inter', sans-serif;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .auth-card {
+            background: var(--card-bg);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 24px;
+            padding: 3.5rem;
+            width: 100%;
+            max-width: 450px;
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.7);
+            animation: authEntrance 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        @keyframes authEntrance {
+            from { opacity: 0; transform: translateY(30px) scale(0.95); }
+            to { opacity: 1; transform: translateY(0) scale(1); }
+        }
+
+        .terminal-header {
+            font-family: 'Fira Code', monospace;
+            font-size: 0.75rem;
+            color: var(--accent-neon);
+            margin-bottom: 2rem;
+            text-align: center;
+            border-bottom: 1px solid rgba(56, 189, 248, 0.2);
+            padding-bottom: 1rem;
+        }
+
+        h2 { font-weight: 800; letter-spacing: -1.5px; margin-bottom: 0.5rem; text-align: center; }
+
+        p { margin-bottom: 1.5rem; }
+        
+        label { 
+            font-family: 'Fira Code', monospace;
+            font-size: 0.7rem;
+            color: #64748b;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            display: block;
+            margin-bottom: 8px;
+        }
+
+        input {
+            width: 100%;
+            background: rgba(0, 0, 0, 0.4) !important;
+            border: 1px solid rgba(255, 255, 255, 0.08) !important;
+            border-radius: 10px !important;
+            padding: 12px 15px !important;
+            color: white !important;
+            transition: 0.3s;
+        }
+
+        input:focus {
+            border-color: var(--accent-neon) !important;
+            box-shadow: 0 0 15px rgba(56, 189, 248, 0.2) !important;
+            outline: none;
+        }
+
+        .helptext, .helptext ul {
+            font-size: 0.65rem;
+            color: #475569;
+            list-style: none;
+            padding: 0;
+            margin-top: 8px;
+            line-height: 1.4;
+        }
+
+        .btn-neon {
+            background: var(--accent-neon);
+            color: #020617;
+            font-weight: 700;
+            border: none;
+            padding: 14px;
+            border-radius: 10px;
+            width: 100%;
+            margin-top: 1rem;
+            box-shadow: 0 0 20px rgba(56, 189, 248, 0.2);
+            transition: 0.3s;
+        }
+
+        .btn-neon:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 0 30px rgba(56, 189, 248, 0.4);
+            background: #7dd3fc;
+        }
+
+        .footer-link {
+            display: block;
+            text-align: center;
+            margin-top: 2rem;
+            color: #64748b;
+            text-decoration: none;
+            font-size: 0.8rem;
+            font-family: 'Fira Code', monospace;
+        }
+
+        .footer-link:hover { color: var(--accent-neon); }
+    </style>
+</head>
+<body>
+
+    <div class="auth-card">
+        <div class="terminal-header">
+            [ STATUS: AWAITING_CREDENTIALS ]
+        </div>
+
+        <h2>New_Identity</h2>
+        <p class="text-center text-muted small mb-5">Create a secure profile to access the memory bank.</p>
+
+        <form method="POST">
+            {% csrf_token %}
+            {{ form.as_p }}
+            
+            <button type="submit" class="btn btn-neon">
+                INITIALIZE_USER
+            </button>
+        </form>
+
+        <a href="{% url 'login' %}" class="footer-link">> existing_user_login</a>
+        <a href="/" class="footer-link" style="margin-top: 0.5rem; opacity: 0.5;">_return_to_root</a>
+    </div>
+
+</body>
+</html>
